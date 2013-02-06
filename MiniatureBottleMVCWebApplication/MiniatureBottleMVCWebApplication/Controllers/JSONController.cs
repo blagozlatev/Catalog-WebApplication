@@ -33,13 +33,14 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         [HttpPost]
-        public void JSONPost()
+        public string JSONPost()
         {
             Stream s = Request.InputStream;
             StreamReader sr = new StreamReader(s);
             string json = sr.ReadToEnd();
             Bottle b = (Bottle)JsonConvert.DeserializeObject(json);
             context.Bottles.Add(b);
+            return "California BABY!";
         }
     }
 }
