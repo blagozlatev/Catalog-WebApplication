@@ -52,7 +52,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         public string Continent { get; set; }
 
         [StringLength(255)]
-        public string Note { get; set; }
+        public string Note { get; set; }       
     }
 
     public class MiniatureBottleContext : DbContext
