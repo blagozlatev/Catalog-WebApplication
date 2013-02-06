@@ -32,8 +32,8 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         }
 
-        [HttpPut]
-        public void JSONPut()
+        [HttpPost]
+        public void JSONPost()
         {
             Stream s = Request.InputStream;
             StreamReader sr = new StreamReader(s);
