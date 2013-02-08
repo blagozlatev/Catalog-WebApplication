@@ -30,17 +30,21 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 return this.Json(bottle, JsonRequestBehavior.AllowGet);
             }
 
-        }
+        }        
 
         [HttpPost]
-        public string JSONPost()
-        {
+        public JsonResult Post()
+        {                     
             Stream s = Request.InputStream;
             StreamReader sr = new StreamReader(s);
-            string json = sr.ReadToEnd();
-            Bottle b = (Bottle)JsonConvert.DeserializeObject(json);
-            context.Bottles.Add(b);
-            return "California BABY!";
+            string json = sr.ReadToEnd();            
+            Bottle b = (Bottle) JsonConvert.DeserializeObject(json);
+            if (b != null)
+            {
+                context.Bottles.Add(b);
+                return Json(b, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
     }
 }

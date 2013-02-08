@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiniatureBottleMVCWebApplication.Models.Bottle>
+﻿﻿@model IEnumerable<MiniatureBottleMVCWebApplication.Models.Bottle>
 
 @{
     ViewBag.Title = "Index";
@@ -10,62 +10,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-@foreach (var item in Model) {
-<ol class="round">
-    <li>
-        <th>
-            @Html.DisplayNameFor(model => model.AlcoholType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Alcohol)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shell)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shape)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Material)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Continent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-    </li>
-
-    <li>
-        
-    </li>
-
-    <li>
-        
-    </li>
-</ol>
-
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.AlcoholType)
@@ -111,6 +55,8 @@
         </th>
         <th></th>
     </tr>
+
+@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.AlcoholType)
