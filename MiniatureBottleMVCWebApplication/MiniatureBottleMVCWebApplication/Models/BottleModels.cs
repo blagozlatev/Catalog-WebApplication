@@ -52,7 +52,15 @@ namespace MiniatureBottleMVCWebApplication.Models
         public string Continent { get; set; }
 
         [StringLength(255)]
-        public string Note { get; set; }       
+        public string Note { get; set; }
+
+        public override string ToString()
+        {
+            return this.Age + "#" + this.Alcohol + "#" + this.AlcoholType + "#" +
+                        this.City + "#" + this.Color + "#" + this.Content + "#" + this.Continent + "#"
+                        + this.Country + "#" + this.ID + "#" + this.Manufacturer + "#" + this.Material
+                         + "#" + this.Name + "#" + this.Note + "#" + this.Shape + "#" + this.Shell + "\n"; ;
+        }
     }
 
     public class MiniatureBottleContext : DbContext
