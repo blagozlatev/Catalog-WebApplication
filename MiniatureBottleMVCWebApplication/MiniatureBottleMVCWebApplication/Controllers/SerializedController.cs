@@ -1,6 +1,8 @@
 ﻿using MiniatureBottleMVCWebApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -38,7 +40,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         [HttpPost]
         public string Post()
-        {            
+        {                        
             Stream s = Request.InputStream;
             StreamReader sr = new StreamReader(s);
             Bottle b = new Bottle();
@@ -54,6 +56,21 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             }            
             return b.ToString();
         }
+        
+        public ActionResult PostImage(string id)
+        {
+            byte[] data;
+            using (var fs = new System.IO.FileStream("image.jpg", System.IO.FileMode.Open))
+            {
+                Bitmap bmp = new Bitmap(fs);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    bmp.Save(stream, ImageFormat.Bmp);
+                    data = stream.ToArray();
 
+                }
+            }   
+            return File(data, "image/bmp");
+        }
     }
 }
