@@ -59,18 +59,25 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         
         public ActionResult PostImage(string id)
         {
-            byte[] data;
-            using (var fs = new System.IO.FileStream("image.jpg", System.IO.FileMode.Open))
+            byte[] imageBytes;
+            Stream s = Request.InputStream;
+            StreamReader streamReader = new StreamReader(s);
+            string strInputStream = streamReader.ReadToEnd();
+            imageBytes = Convert.FromBase64String(strInputStream);            
+            //using (var fs = new System.IO.FileStream("ImageUpload.jpg", System.IO.FileMode.Create))
+            //{                               
+            using (MemoryStream memoryStream = new MemoryStream(imageBytes))
             {
-                Bitmap bmp = new Bitmap(fs);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    bmp.Save(stream, ImageFormat.Bmp);
-                    data = stream.ToArray();
+                //s.CopyTo(stream);
+                //data = stream.ToArray();
+                //Request.InputStream.CopyTo(stream);                    
+                Bitmap bmp = new Bitmap(memoryStream);
+                //bmp.Save(fs, ImageFormat.Jpeg);
+                //data = stream.ToArray();
 
-                }
-            }   
-            return File(data, "image/bmp");
+            }
+            //}            
+            return File(imageBytes, "image/jpeg");
         }
     }
 }
