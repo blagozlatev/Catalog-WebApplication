@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
@@ -52,7 +53,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         public string Continent { get; set; }
 
         [StringLength(255)]
-        public string Note { get; set; }
+        public string Note { get; set; }        
 
         public override string ToString()
         {
@@ -111,8 +112,18 @@ namespace MiniatureBottleMVCWebApplication.Models
         }
     }
 
+    public class BottleImage
+    {
+        [Required]
+        public int ID { get; set; }
+                
+        public byte[] BImage { get; set; }
+    }
+
+
     public class MiniatureBottleContext : DbContext
     {
         public DbSet<Bottle> Bottles { get; set; }
+        public DbSet<BottleImage> BottleImages { get; set; }
     }
 }

@@ -57,27 +57,52 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             return b.ToString();
         }
         
-        public ActionResult PostImage(string id)
+        [HttpPost]
+        public ActionResult PostImage(string id="0")
         {
+            int intID = 0;
+            if (int.TryParse(id, out intID))
+            {
+                intID = int.Parse(id);
+            }
+            if (intID == 0)
+            {
+                return new HttpNotFoundResult();
+            }
             byte[] imageBytes;
             Stream s = Request.InputStream;
             StreamReader streamReader = new StreamReader(s);
             string strInputStream = streamReader.ReadToEnd();
-            imageBytes = Convert.FromBase64String(strInputStream);            
-            //using (var fs = new System.IO.FileStream("ImageUpload.jpg", System.IO.FileMode.Create))
-            //{                               
-            using (MemoryStream memoryStream = new MemoryStream(imageBytes))
-            {
-                //s.CopyTo(stream);
-                //data = stream.ToArray();
-                //Request.InputStream.CopyTo(stream);                    
-                Bitmap bmp = new Bitmap(memoryStream);
-                //bmp.Save(fs, ImageFormat.Jpeg);
-                //data = stream.ToArray();
+            imageBytes = Convert.FromBase64String(strInputStream);
+            context.BottleImages.Add(new BottleImage() {ID=intID, BImage=imageBytes});
+            context.SaveChanges();
+            //using (MemoryStream memoryStream = new MemoryStream(imageBytes))
+            //{
+            //    Bitmap bmp = new Bitmap(memoryStream);                
 
-            }
             //}            
             return File(imageBytes, "image/jpeg");
+        }
+
+        [HttpGet]
+        public ActionResult GetImage(string id = "0")
+        {
+            int intID = 0;            
+            if (int.TryParse(id, out intID))
+            {
+                intID = int.Parse(id);
+            }
+            if (intID == 0)
+            {
+                return new HttpNotFoundResult();
+            }
+            BottleImage bi = context.BottleImages.Find(intID);
+            if (bi != null)
+            {
+                byte[] imageBytes = bi.BImage;
+                return File(imageBytes, "image/jpeg");
+            }
+            return null;
         }
     }
 }
