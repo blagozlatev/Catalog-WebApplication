@@ -56,16 +56,15 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             }            
             return b.ToString();
         }
-        
+
+
+        //
+        // POST: /Serialized/PostImage/id
+
         [HttpPost]
-        public ActionResult PostImage(string id="0")
-        {
-            int intID = 0;
-            if (int.TryParse(id, out intID))
-            {
-                intID = int.Parse(id);
-            }
-            if (intID == 0)
+        public ActionResult PostImage(int id = 0)
+        {            
+            if (id == 0)
             {
                 return new HttpNotFoundResult();
             }
@@ -74,35 +73,28 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             StreamReader streamReader = new StreamReader(s);
             string strInputStream = streamReader.ReadToEnd();
             imageBytes = Convert.FromBase64String(strInputStream);
-            context.BottleImages.Add(new BottleImage() {ID=intID, BImage=imageBytes});
-            context.SaveChanges();
-            //using (MemoryStream memoryStream = new MemoryStream(imageBytes))
-            //{
-            //    Bitmap bmp = new Bitmap(memoryStream);                
-
-            //}            
+            context.BottleImages.Add(
+                new BottleImage
+                {
+                    BottleImageID = id,
+                    BottleImg = imageBytes
+                });
+            context.SaveChanges();            
             return File(imageBytes, "image/jpeg");
         }
 
+        //
+        // GET: /Serialized/GetImage/id
         [HttpGet]
-        public ActionResult GetImage(string id = "0")
-        {
-            int intID = 0;            
-            if (int.TryParse(id, out intID))
-            {
-                intID = int.Parse(id);
-            }
-            if (intID == 0)
+        public ActionResult GetImage(int id = 0)
+        {            
+            if (id == 0)
             {
                 return new HttpNotFoundResult();
             }
-            BottleImage bi = context.BottleImages.Find(intID);
-            if (bi != null)
-            {
-                byte[] imageBytes = bi.BImage;
-                return File(imageBytes, "image/jpeg");
-            }
-            return null;
+            byte[] imageBytes;            
+            imageBytes = context.BottleImages.Find(id).BottleImg.ToArray();
+            return File(imageBytes, "image/jpeg");
         }
     }
 }

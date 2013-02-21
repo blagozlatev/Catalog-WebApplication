@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace MiniatureBottleMVCWebApplication.Models
     public class Bottle
     {
         [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [StringLength(100)]
@@ -115,9 +118,11 @@ namespace MiniatureBottleMVCWebApplication.Models
     public class BottleImage
     {
         [Required]
-        public int ID { get; set; }
+        [Key]        
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int BottleImageID { get; set; }
                 
-        public byte[] BImage { get; set; }
+        public byte[] BottleImg { get; set; }
     }
 
 

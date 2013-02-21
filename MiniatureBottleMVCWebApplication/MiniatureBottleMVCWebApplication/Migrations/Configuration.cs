@@ -57,11 +57,11 @@ namespace MiniatureBottleMVCWebApplication.Migrations
             context.BottleImages.AddOrUpdate(
                 new BottleImage
                 {
-                    ID = 12
+                    BottleImageID = 12
                 },
                 new BottleImage
                 {
-                    ID = 122
+                    BottleImageID = 122
                 });
         }
     }
