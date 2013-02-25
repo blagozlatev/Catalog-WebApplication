@@ -79,8 +79,8 @@ namespace MiniatureBottleMVCWebApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BottleImageId { get; set; }
 
-        [ForeignKey("Bottle")]
-        public int BottleID { get; set; }
+        //[ForeignKey("Bottle")]
+        //public int BottleID { get; set; }
 
         public byte[] BottleImg { get; set; }
     }
