@@ -79,18 +79,18 @@ namespace MiniatureBottleMVCWebApplication.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BottleImageId { get; set; }
 
-        //[ForeignKey("Bottle")]
-        //public int BottleID { get; set; }
+        public int BId { get; set; }
+
+        [ForeignKey("BId")]
+        public virtual Bottle Bottle { get; set; }
 
         public byte[] BottleImg { get; set; }
     }
 
     public class Bottle
     {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
 
         [StringLength(100)]
         public string AlcoholType { get; set; }
@@ -139,7 +139,7 @@ namespace MiniatureBottleMVCWebApplication.Models
             string strReturn = "Age: " + this.Age + "\n" + "Alcohol: " + this.Alcohol + "\n" +
                 "Alcohol Type: " + this.AlcoholType + "\n" + "City: " + this.City + "\n" + "Color: " +
                 this.Color + "\n" + "Content: " + this.Content + "\n" + "Continent: " + this.Continent + "\n" +
-                "Country: " + this.Continent + "\n" + "ID: " + this.ID + "\n" + "Manufacturer: " +
+                "Country: " + this.Continent + "\n" + "ID: " + this.Id + "\n" + "Manufacturer: " +
                 this.Manufacturer + "\n" + "Material: " + this.Material + "\n" + "Name: " + this.Name + "\n" +
                 "Note: " + this.Note + "\n" + "Shape: " + this.Shape + "\n" + "Shell: " + this.Shell + "\n";
             return strReturn;
@@ -150,7 +150,7 @@ namespace MiniatureBottleMVCWebApplication.Models
 
             return b.Age + "#" + b.Alcohol + "#" + b.AlcoholType + "#" +
                         b.City + "#" + b.Color + "#" + b.Content + "#" + b.Continent + "#"
-                        + b.Country + "#" + b.ID + "#" + b.Manufacturer + "#" + b.Material
+                        + b.Country + "#" + b.Id + "#" + b.Manufacturer + "#" + b.Material
                          + "#" + b.Name + "#" + b.Note + "#" + b.Shape + "#" + b.Shell + "\n";
         }        
 
@@ -175,7 +175,7 @@ namespace MiniatureBottleMVCWebApplication.Models
                 bottle.Content = split[5];
                 bottle.Continent = split[6];
                 bottle.Country = split[7];
-                bottle.ID = int.Parse(split[8]);
+                bottle.Id = int.Parse(split[8]);
                 bottle.Manufacturer = split[9];
                 bottle.Material = split[10];
                 bottle.Name = split[11];
