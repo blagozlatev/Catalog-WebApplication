@@ -25,13 +25,14 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 string strReturn = string.Empty;
                 foreach (Bottle b in bottles)
                 {
-                    strReturn += b.Serialize();
+                    strReturn += Bottle.Serialize(b);
                 }
                 return strReturn;
             }
             else
-            {                
-                return context.Bottles.Find(id).Serialize();
+            {
+                Bottle b = context.Bottles.Find(id);
+                return Bottle.Serialize(b);
             }            
         }
 
@@ -76,7 +77,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             context.BottleImages.Add(
                 new BottleImage
                 {
-                    BottleImageID = id,
+                    BottleImageId = id,
                     BottleImg = imageBytes
                 });
             context.SaveChanges();            
@@ -95,6 +96,12 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             byte[] imageBytes;            
             imageBytes = context.BottleImages.Find(id).BottleImg.ToArray();
             return File(imageBytes, "image/jpeg");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

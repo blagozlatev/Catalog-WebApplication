@@ -1,10 +1,7 @@
 namespace MiniatureBottleMVCWebApplication.Migrations
 {
     using MiniatureBottleMVCWebApplication.Models;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MiniatureBottleMVCWebApplication.Models.MiniatureBottleContext>
     {
@@ -26,7 +23,7 @@ namespace MiniatureBottleMVCWebApplication.Migrations
                         Content="Whiskey",
                         Continent="Europe",
                         Country="Bulgaria",
-                        ID=12,
+                        ID=13,
                         Manufacturer="da",
                         Material="da",
                         Name="da",
@@ -45,7 +42,7 @@ namespace MiniatureBottleMVCWebApplication.Migrations
                          Content = "Whiskey",
                          Continent = "Europe",
                          Country = "Bulgaria",
-                         ID = 122,
+                         ID = 142,
                          Manufacturer = "da",
                          Material = "da",
                          Name = "da",
@@ -57,11 +54,11 @@ namespace MiniatureBottleMVCWebApplication.Migrations
             context.BottleImages.AddOrUpdate(
                 new BottleImage
                 {
-                    BottleImageID = 12
+                    BottleImageId = 13
                 },
                 new BottleImage
                 {
-                    BottleImageID = 122
+                    BottleImageId = 142
                 });
         }
     }

@@ -1,14 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Web;
 
 namespace MiniatureBottleMVCWebApplication.Models
 {
+    public class BottleDrinkDetail
+    {
+        [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
+
+        [StringLength(100)]
+        public string AlcoholType { get; set; }
+
+        [StringLength(100)]
+        public string Alcohol { get; set; }
+
+        [StringLength(100)]
+        public string Content { get; set; }
+
+        [Range(1, 300)]
+        public int Age { get; set; }
+    }
+
+    public class BottleDetails
+    {
+        [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
+
+        [StringLength(100)]
+        public string Shell { get; set; }
+
+        [Required, StringLength(100)]
+        public string Name { get; set; }
+
+        [StringLength(100)]
+        public string Shape { get; set; }
+
+        [StringLength(100)]
+        public string Color { get; set; }
+
+        [StringLength(100)]
+        public string Material { get; set; }
+
+        [StringLength(255)]
+        public string Note { get; set; }
+    }
+
+    public class BottleOrigin
+    {
+        [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
+
+        [StringLength(100)]
+        public string Manufacturer { get; set; }
+
+        [StringLength(100)]
+        public string City { get; set; }
+
+        [StringLength(100)]
+        public string Country { get; set; }
+
+        [StringLength(50)]
+        public string Continent { get; set; }
+    }
+
+    public class BottleImage
+    {
+        [Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int BottleImageId { get; set; }
+
+        [ForeignKey("Bottle")]
+        public int BottleID { get; set; }
+
+        public byte[] BottleImg { get; set; }
+    }
+
     public class Bottle
     {
         [Required]
@@ -69,13 +145,13 @@ namespace MiniatureBottleMVCWebApplication.Models
             return strReturn;
         }
 
-        public string Serialize()
+        public static string Serialize(Bottle b)
         {
 
-            return this.Age + "#" + this.Alcohol + "#" + this.AlcoholType + "#" +
-                        this.City + "#" + this.Color + "#" + this.Content + "#" + this.Continent + "#"
-                        + this.Country + "#" + this.ID + "#" + this.Manufacturer + "#" + this.Material
-                         + "#" + this.Name + "#" + this.Note + "#" + this.Shape + "#" + this.Shell + "\n";
+            return b.Age + "#" + b.Alcohol + "#" + b.AlcoholType + "#" +
+                        b.City + "#" + b.Color + "#" + b.Content + "#" + b.Continent + "#"
+                        + b.Country + "#" + b.ID + "#" + b.Manufacturer + "#" + b.Material
+                         + "#" + b.Name + "#" + b.Note + "#" + b.Shape + "#" + b.Shell + "\n";
         }        
 
         public static Bottle Deserialize(string serialized)
@@ -115,20 +191,12 @@ namespace MiniatureBottleMVCWebApplication.Models
         }
     }
 
-    public class BottleImage
-    {
-        [Required]
-        [Key]        
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BottleImageID { get; set; }
-                
-        public byte[] BottleImg { get; set; }
-    }
-
-
     public class MiniatureBottleContext : DbContext
     {
         public DbSet<Bottle> Bottles { get; set; }
-        public DbSet<BottleImage> BottleImages { get; set; }
+        public DbSet<BottleDetails> BottleDetails { get; set; }
+        public DbSet<BottleDrinkDetail> BottleDrinkDetails { get; set; }
+        public DbSet<BottleOrigin> BottleOrigins { get; set; }
+        public DbSet<BottleImage> BottleImages { get; set; }        
     }
 }
