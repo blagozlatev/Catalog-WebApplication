@@ -1,0 +1,43 @@
+﻿@model MiniatureBottleMVCWebApplication.Models.BottleAdd
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>BottleAdd</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BottleImage.BottleImageId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BottleImage.BottleImageId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BottleDetail.Shell)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BottleDetail.Shell)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BottleDrinkDetail.AlcoholType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BottleDrinkDetail.AlcoholType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BottleOrigin.Manufacturer)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BottleOrigin.Manufacturer)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

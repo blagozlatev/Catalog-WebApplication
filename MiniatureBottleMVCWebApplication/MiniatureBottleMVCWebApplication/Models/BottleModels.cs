@@ -8,10 +8,8 @@ namespace MiniatureBottleMVCWebApplication.Models
 {
     public class BottleDrinkDetail
     {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
 
         [StringLength(100)]
         public string AlcoholType { get; set; }
@@ -24,14 +22,17 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [Range(1, 300)]
         public int Age { get; set; }
+
+        //public int BttlAddId { get; set; }
+
+        //[ForeignKey("BttlAddId")]
+        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
-    public class BottleDetails
+    public class BottleDetail
     {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
 
         [StringLength(100)]
         public string Shell { get; set; }
@@ -50,14 +51,17 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [StringLength(255)]
         public string Note { get; set; }
+
+        //public int BttlAddId { get; set; }
+
+        //[ForeignKey("BttlAddId")]
+        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
     public class BottleOrigin
     {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
 
         [StringLength(100)]
         public string Manufacturer { get; set; }
@@ -70,21 +74,47 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [StringLength(50)]
         public string Continent { get; set; }
+
+        //public int BttlAddId { get; set; }
+
+        //[ForeignKey("BttlAddId")]
+        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
     public class BottleImage
     {
-        [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BottleImageId { get; set; }
-
-        public int BId { get; set; }
-
-        [ForeignKey("BId")]
-        public virtual Bottle Bottle { get; set; }
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int BottleImageId { get; set; }        
 
         public byte[] BottleImg { get; set; }
+        
+        //public int BttlAddId { get; set; }
+
+        //[ForeignKey("BttlAddId")]
+        //public virtual BottleAdd BottleAdd { get; set; }
+    }
+
+    public class BottleAdd
+    {
+        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
+
+        public int BottleImageId { get; set; }
+        public int BottleDetailId { get; set; }
+        public int BottleDrinkDetailId { get; set; }
+        public int BottleOriginId { get; set; }
+
+        [ForeignKey("BottleImageId")]
+        public virtual BottleImage BottleImage { get; set; }
+
+        [ForeignKey("BottleDetailId")]
+        public virtual BottleDetail BottleDetail { get; set; }
+
+        [ForeignKey("BottleDrinkDetailId")]
+        public virtual BottleDrinkDetail BottleDrinkDetail { get; set; }
+
+        [ForeignKey("BottleOriginId")]
+        public virtual BottleOrigin BottleOrigin { get; set; }
     }
 
     public class Bottle
@@ -193,8 +223,8 @@ namespace MiniatureBottleMVCWebApplication.Models
 
     public class MiniatureBottleContext : DbContext
     {
-        public DbSet<Bottle> Bottles { get; set; }
-        public DbSet<BottleDetails> BottleDetails { get; set; }
+        public DbSet<BottleAdd> Bottles { get; set; }
+        public DbSet<BottleDetail> BottleDetails { get; set; }
         public DbSet<BottleDrinkDetail> BottleDrinkDetails { get; set; }
         public DbSet<BottleOrigin> BottleOrigins { get; set; }
         public DbSet<BottleImage> BottleImages { get; set; }        

@@ -1,0 +1,61 @@
+﻿@model MiniatureBottleMVCWebApplication.Models.BottleAdd
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BottleAdd</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleImageId, "BottleImage")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BottleImageId", String.Empty)
+            @Html.ValidationMessageFor(model => model.BottleImageId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetailId, "BottleDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BottleDetailId", String.Empty)
+            @Html.ValidationMessageFor(model => model.BottleDetailId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetailId, "BottleDrinkDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BottleDrinkDetailId", String.Empty)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetailId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleOriginId, "BottleOrigin")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("BottleOriginId", String.Empty)
+            @Html.ValidationMessageFor(model => model.BottleOriginId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

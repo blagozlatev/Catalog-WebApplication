@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MiniatureBottleMVCWebApplication.Models.BottleAdd>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleImage.BottleImageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDetail.Shell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDrinkDetail.AlcoholType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleOrigin.Manufacturer)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleImage.BottleImageId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDetail.Shell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDrinkDetail.AlcoholType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleOrigin.Manufacturer)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

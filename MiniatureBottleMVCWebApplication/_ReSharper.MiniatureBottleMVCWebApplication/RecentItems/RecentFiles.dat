@@ -1,21 +1,19 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:SerializedController.cs" caret="3170" fromTop="27" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:DatabaseController.cs" caret="645" fromTop="23" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Models/f:BottleModels.cs" caret="2064" fromTop="8" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Database/f:Create.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Database/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Database/f:Edit.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Database/f:Details.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Database/f:Delete.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Shared/f:PageNotFound.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Serialized/f:GetImage.cshtml" caret="0" fromTop="0" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Migrations/f:Configuration.cs" caret="193" fromTop="5" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:Serialized/f:GetImage.cshtml" caret="97" fromTop="4" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:SeparateDatabase/f:Details.cshtml" caret="0" fromTop="0" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:SeparateDatabase/f:Edit.cshtml" caret="0" fromTop="0" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:SeparateDatabase/f:Create.cshtml" caret="273" fromTop="14" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Models/f:BottleModels.cs" caret="6094" fromTop="102" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:SeparateDatabase/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Views/d:SeparateDatabase/f:Delete.cshtml" caret="0" fromTop="0" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Migrations/f:Configuration.cs" caret="5279" fromTop="45" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:SerializedController.cs" caret="1290" fromTop="7" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:SeparateDatabaseController.cs" caret="1585" fromTop="29" />
   </RecentFiles>
   <RecentEdits>
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:DatabaseController.cs" caret="433" fromTop="16" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:SerializedController.cs" caret="3103" fromTop="24" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Models/f:BottleModels.cs" caret="2064" fromTop="8" />
-    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Migrations/f:Configuration.cs" caret="222" fromTop="5" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Models/f:BottleModels.cs" caret="2908" fromTop="14" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Migrations/f:Configuration.cs" caret="2709" fromTop="20" />
+    <File id="934F7ABE-087F-4BF3-841F-6B660FDAC5FF/d:Controllers/f:SerializedController.cs" caret="1743" fromTop="20" />
   </RecentEdits>
 </RecentFiles>
