@@ -22,11 +22,6 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [Range(1, 300)]
         public int Age { get; set; }
-
-        //public int BttlAddId { get; set; }
-
-        //[ForeignKey("BttlAddId")]
-        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
     public class BottleDetail
@@ -51,11 +46,6 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [StringLength(255)]
         public string Note { get; set; }
-
-        //public int BttlAddId { get; set; }
-
-        //[ForeignKey("BttlAddId")]
-        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
     public class BottleOrigin
@@ -74,11 +64,6 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [StringLength(50)]
         public string Continent { get; set; }
-
-        //public int BttlAddId { get; set; }
-
-        //[ForeignKey("BttlAddId")]
-        //public virtual BottleAdd BottleAdd { get; set; }
     }
 
     public class BottleImage
@@ -86,12 +71,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BottleImageId { get; set; }        
 
-        public byte[] BottleImg { get; set; }
-        
-        //public int BttlAddId { get; set; }
-
-        //[ForeignKey("BttlAddId")]
-        //public virtual BottleAdd BottleAdd { get; set; }
+        public byte[] BottleImg { get; set; }       
     }
 
     public class BottleAdd
