@@ -39,11 +39,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // GET: /SeparateDatabase/Create
 
         public ActionResult Create()
-        {
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId");
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell");
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType");
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer");
+        {            
             return View();
         }
 
@@ -56,14 +52,9 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             if (ModelState.IsValid)
             {
                 db.Bottles.Add(bottleadd);
-                db.SaveChanges();
+                db.SaveChanges();                                
                 return RedirectToAction("Index");
             }
-
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", bottleadd.BottleImageId);
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", bottleadd.BottleDetailId);
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", bottleadd.BottleDrinkDetailId);
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", bottleadd.BottleOriginId);
             return View(bottleadd);
         }
 
