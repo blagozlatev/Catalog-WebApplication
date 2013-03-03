@@ -71,11 +71,10 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             {
                 return new HttpNotFoundResult();
             }
-            byte[] imageBytes;
             Stream s = Request.InputStream;
             StreamReader streamReader = new StreamReader(s);
             string strInputStream = streamReader.ReadToEnd();
-            imageBytes = Convert.FromBase64String(strInputStream);
+            byte[] imageBytes = Convert.FromBase64String(strInputStream);
             context.BottleImages.Add(
                 new BottleImage
                 {

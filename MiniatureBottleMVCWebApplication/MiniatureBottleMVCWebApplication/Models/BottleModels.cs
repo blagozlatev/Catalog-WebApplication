@@ -70,8 +70,8 @@ namespace MiniatureBottleMVCWebApplication.Models
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BottleImageId { get; set; }        
-
-        public byte[] BottleImg { get; set; }       
+        
+        public byte[] BottleImg { get; set; }
     }
 
     public class BottleAdd

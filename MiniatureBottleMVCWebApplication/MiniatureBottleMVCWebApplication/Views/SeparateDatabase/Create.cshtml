@@ -1,7 +1,7 @@
 ﻿@model MiniatureBottleMVCWebApplication.Models.BottleAdd
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create";    
 }
 
 <h2>Create</h2>
@@ -11,37 +11,142 @@
 
     <fieldset>
         <legend>BottleAdd</legend>
-
+        
         <div class="editor-label">
-            @Html.LabelFor(model => model.BottleImageId, "BottleImage")
+            @Html.LabelFor(model => model.Id)
         </div>
+        
         <div class="editor-field">
-            @Html.DropDownList("BottleImageId", String.Empty)
-            @Html.ValidationMessageFor(model => model.BottleImageId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.BottleDetailId, "BottleDetail")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("BottleDetailId", String.Empty)
-            @Html.ValidationMessageFor(model => model.BottleDetailId)
+            @Html.EditorFor(model => model.Id)
+            @Html.ValidationMessageFor(model => model.Id)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.BottleDrinkDetailId, "BottleDrinkDetail")
+            @Html.LabelFor(model => model.BottleDetail.Shell)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("BottleDrinkDetailId", String.Empty)
-            @Html.ValidationMessageFor(model => model.BottleDrinkDetailId)
+            @Html.EditorFor(model => model.BottleDetail.Shell)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Shell)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetail.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDetail.Name)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Material)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.BottleOriginId, "BottleOrigin")
+            @Html.LabelFor(model => model.BottleDetail.Shape)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("BottleOriginId", String.Empty)
-            @Html.ValidationMessageFor(model => model.BottleOriginId)
+            @Html.EditorFor(model => model.BottleDetail.Shape)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Shape)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetail.Color)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDetail.Color)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Color)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetail.Material)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDetail.Material)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Material)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetail.Note)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDetail.Note)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Note)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDetail.Shape)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDetail.Shape)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Shape)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetail.Age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDrinkDetail.Age)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetail.Age)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetail.Alcohol)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDrinkDetail.Alcohol)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetail.Alcohol)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetail.AlcoholType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDrinkDetail.AlcoholType)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetail.AlcoholType)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetail.AlcoholType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDrinkDetail.AlcoholType)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetail.AlcoholType)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleDrinkDetail.Content)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleDrinkDetail.Content)
+            @Html.ValidationMessageFor(model => model.BottleDrinkDetail.Content)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleOrigin.Manufacturer)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleOrigin.Manufacturer)
+            @Html.ValidationMessageFor(model => model.BottleOrigin.Manufacturer)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleOrigin.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleOrigin.City)
+            @Html.ValidationMessageFor(model => model.BottleOrigin.City)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleOrigin.Country)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleOrigin.Country)
+            @Html.ValidationMessageFor(model => model.BottleOrigin.Country)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BottleOrigin.Continent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BottleOrigin.Continent)
+            @Html.ValidationMessageFor(model => model.BottleOrigin.Continent)
         </div>
 
         <p>
