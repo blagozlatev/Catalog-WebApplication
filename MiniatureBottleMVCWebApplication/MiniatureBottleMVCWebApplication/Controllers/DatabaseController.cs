@@ -9,7 +9,7 @@ using MiniatureBottleMVCWebApplication.Models;
 
 namespace MiniatureBottleMVCWebApplication.Controllers
 {
-    public class SeparateDatabaseController : Controller
+    public class DatabaseController : Controller
     {
         private MiniatureBottleContext db = new MiniatureBottleContext();
 

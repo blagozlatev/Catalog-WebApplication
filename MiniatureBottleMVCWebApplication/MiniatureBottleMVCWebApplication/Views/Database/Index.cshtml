@@ -1,7 +1,18 @@
 ﻿@model IEnumerable<MiniatureBottleMVCWebApplication.Models.Bottle>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Bottle Collection";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>@ViewBag.Title</h2>
+            </hgroup>
+        </div>
+    </section>
 }
 
 <h2>Index</h2>

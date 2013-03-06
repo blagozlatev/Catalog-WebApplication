@@ -168,7 +168,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SeparateDatabaseController.cs" />
+    <Compile Include="Controllers\DatabaseController.cs" />
     <Compile Include="Controllers\SerializedController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -296,19 +296,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SeparateDatabase\Index.cshtml" />
+    <Content Include="Views\Database\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SeparateDatabase\Details.cshtml" />
+    <Content Include="Views\Database\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SeparateDatabase\Create.cshtml" />
+    <Content Include="Views\Database\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SeparateDatabase\Edit.cshtml" />
+    <Content Include="Views\Database\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SeparateDatabase\Delete.cshtml" />
+    <Content Include="Views\Database\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>BottleAdd</legend>
+        <legend>Bottle</legend>
         
         <div class="editor-label">
             @Html.LabelFor(model => model.Id)
@@ -34,7 +34,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.BottleDetail.Name)
-            @Html.ValidationMessageFor(model => model.BottleDetail.Material)
+            @Html.ValidationMessageFor(model => model.BottleDetail.Name)
         </div>
 
         <div class="editor-label">
@@ -67,15 +67,7 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.BottleDetail.Note)
             @Html.ValidationMessageFor(model => model.BottleDetail.Note)
-        </div>
-        
-        <div class="editor-label">
-            @Html.LabelFor(model => model.BottleDetail.Shape)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.BottleDetail.Shape)
-            @Html.ValidationMessageFor(model => model.BottleDetail.Shape)
-        </div>
+        </div>                        
         
         <div class="editor-label">
             @Html.LabelFor(model => model.BottleDrinkDetail.Age)
