@@ -12,16 +12,31 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BottleImage.BottleImageId)
+            @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BottleDetail.Shell)
+            @Html.DisplayNameFor(model => model.BottleDetail.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BottleDrinkDetail.AlcoholType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BottleOrigin.Manufacturer)
+            @Html.DisplayNameFor(model => model.BottleDrinkDetail.Alcohol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDrinkDetail.Age)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDetail.Shape)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDetail.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDetail.Material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BottleDetail.Note)
         </th>
         <th></th>
     </tr>
@@ -29,21 +44,34 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BottleImage.BottleImageId)
+            @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BottleDetail.Shell)
+            @Html.DisplayFor(modelItem => item.BottleDetail.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BottleDrinkDetail.AlcoholType)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BottleOrigin.Manufacturer)
+            @Html.DisplayFor(modelItem => item.BottleDrinkDetail.Alcohol)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.BottleDrinkDetail.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDetail.Shape)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDetail.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDetail.Material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BottleDetail.Note)
+        </td>
+        <td>            
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
         </td>
     </tr>
 }

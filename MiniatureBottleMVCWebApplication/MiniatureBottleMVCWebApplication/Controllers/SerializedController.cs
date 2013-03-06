@@ -49,15 +49,15 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             while (!sr.EndOfStream)
             {
                 string bottle = sr.ReadLine();
-                //b = Bottle.Deserialize(bottle);
+                b = Bottle.Deserialize(bottle);
                 if (b != null)
                 {
                     context.Bottles.Add(b);
                     context.SaveChanges();
                 }
-            }
-            return Content(b.ToString());
-            //return Content(string.Empty);
+                return Content("0");
+            }            
+            return Content("1");
         }
 
 
