@@ -32,76 +32,27 @@ namespace MiniatureBottleMVCWebApplication.Models
 
         [ForeignKey("BottleOriginId")]
         public virtual BottleOrigin BottleOrigin { get; set; }
-    }
-
-    public class Bottle2
-    {
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
-
-        [StringLength(100)]
-        public string AlcoholType { get; set; }
-
-        [StringLength(100)]
-        public string Alcohol { get; set; }
-
-        [StringLength(100)]
-        public string Content { get; set; }
-
-        [Range(1, 300)]
-        public int Age { get; set; }
-
-        [StringLength(100)]
-        public string Shell { get; set; }
-
-        [Required,StringLength(100)]
-        public string Name { get; set; }
-
-        [StringLength(100)]
-        public string Shape { get; set; }
-
-        [StringLength(100)]
-        public string Color { get; set; }
-
-        [StringLength(100)]
-        public string Material { get; set; }
-
-        [StringLength(100)]
-        public string Manufacturer { get; set; }
-
-        [StringLength(100)]
-        public string City { get; set; }
-
-        [StringLength(100)]
-        public string Country { get; set; }
-
-        [StringLength(50)]
-        public string Continent { get; set; }
-
-        [StringLength(255)]
-        public string Note { get; set; }        
 
         public override string ToString()
         {
-            string strReturn = "Age: " + this.Age + "\n" + "Alcohol: " + this.Alcohol + "\n" +
-                "Alcohol Type: " + this.AlcoholType + "\n" + "City: " + this.City + "\n" + "Color: " +
-                this.Color + "\n" + "Content: " + this.Content + "\n" + "Continent: " + this.Continent + "\n" +
-                "Country: " + this.Continent + "\n" + "ID: " + this.Id + "\n" + "Manufacturer: " +
-                this.Manufacturer + "\n" + "Material: " + this.Material + "\n" + "Name: " + this.Name + "\n" +
-                "Note: " + this.Note + "\n" + "Shape: " + this.Shape + "\n" + "Shell: " + this.Shell + "\n";
-            return strReturn;
+            return "ID: " + this.Id + "\n"
+                + "Alcohol Type: " + this.BottleDrinkDetail.AlcoholType + "\n"
+                + "Alcohol" + this.BottleDrinkDetail.Alcohol + "\n"
+                + "Content" + this.BottleDrinkDetail.Content + "\n"
+                + "Age" + this.BottleDrinkDetail.Age + "\n"
+                + "Shell" + this.BottleDetail.Shell + "\n"
+                + "Name" + this.BottleDetail.Name + "\n"
+                + "Shape" + this.BottleDetail.Shape + "\n"
+                + "Color" + this.BottleDetail.Color + "\n"
+                + "Material" + this.BottleDetail.Material + "\n"
+                + "Manufacturer" + this.BottleOrigin.Manufacturer + "\n"
+                + "City" + this.BottleOrigin.City + "\n"
+                + "Country" + this.BottleOrigin.Country + "\n"
+                + "Continent" + this.BottleOrigin.Continent + "\n"
+                + "Note" + this.BottleDetail.Note + "\n";
         }
 
-        public static string Serialize(Bottle2 b)
-        {
-
-            return b.Age + "#" + b.Alcohol + "#" + b.AlcoholType + "#" +
-                        b.City + "#" + b.Color + "#" + b.Content + "#" + b.Continent + "#"
-                        + b.Country + "#" + b.Id + "#" + b.Manufacturer + "#" + b.Material
-                         + "#" + b.Name + "#" + b.Note + "#" + b.Shape + "#" + b.Shell + "\n";
-        }        
-
-        public static Bottle2 Deserialize(string serialized)
+        public static Bottle Deserialize(string serialized)
         {
             string[] split = serialized.Split('#');
             for (int i = 0; i < split.Count(); i++)
@@ -111,30 +62,49 @@ namespace MiniatureBottleMVCWebApplication.Models
                     split[i] = string.Empty;
                 }
             }
-            Bottle2 bottle = new Bottle2();
+            Bottle b = new Bottle();
             try
             {
-                bottle.Age = int.Parse(split[0]);
-                bottle.Alcohol = split[1];
-                bottle.AlcoholType = split[2];
-                bottle.City = split[3];
-                bottle.Color = split[4];
-                bottle.Content = split[5];
-                bottle.Continent = split[6];
-                bottle.Country = split[7];
-                bottle.Id = int.Parse(split[8]);
-                bottle.Manufacturer = split[9];
-                bottle.Material = split[10];
-                bottle.Name = split[11];
-                bottle.Note = split[12];
-                bottle.Shape = split[13];
-                bottle.Shell = split[14];
+                b.Id = int.Parse(split[0]);
+                b.BottleDrinkDetail.AlcoholType = split[1];
+                b.BottleDrinkDetail.Alcohol = split[2];
+                b.BottleDrinkDetail.Content = split[3];
+                b.BottleDrinkDetail.Age = int.Parse(split[4]);
+                b.BottleDetail.Shell = split[5];
+                b.BottleDetail.Name = split[6];
+                b.BottleDetail.Shape = split[7];
+                b.BottleDetail.Color = split[8];
+                b.BottleDetail.Material = split[9];
+                b.BottleOrigin.Manufacturer = split[10];
+                b.BottleOrigin.City = split[11];
+                b.BottleOrigin.Country = split[12];
+                b.BottleOrigin.Continent = split[13];
+                b.BottleDetail.Note = split[14];
             }
             catch (IndexOutOfRangeException ex)
             {
                 return null;
             }
-            return bottle;
+            return b;            
+        }
+
+        public static string Serialize(Bottle b)
+        {            
+            return b.Id.ToString().Replace('#', ' ') + "#"
+                + b.BottleDrinkDetail.AlcoholType.Replace('#', ' ') + "#"
+                + b.BottleDrinkDetail.Alcohol.Replace('#', ' ') + "#"
+                + b.BottleDrinkDetail.Content.Replace('#', ' ') + "#"
+                + b.BottleDrinkDetail.Age.ToString().Replace('#', ' ') + "#"
+                + b.BottleDetail.Shell.Replace('#', ' ') + "#"
+                + b.BottleDetail.Name.Replace('#', ' ') + "#"
+                + b.BottleDetail.Shape.Replace('#', ' ') + "#"
+                + b.BottleDetail.Color.Replace('#', ' ') + "#"
+                + b.BottleDetail.Material.Replace('#', ' ') + "#"
+                + b.BottleOrigin.Manufacturer.Replace('#', ' ') + "#"
+                + b.BottleOrigin.City.Replace('#', ' ') + "#"
+                + b.BottleOrigin.Country.Replace('#', ' ') + "#"
+                + b.BottleOrigin.Continent.Replace('#', ' ') + "#"
+                + b.BottleDetail.Note.Replace('#', ' ') + "#";
         }
     }
 

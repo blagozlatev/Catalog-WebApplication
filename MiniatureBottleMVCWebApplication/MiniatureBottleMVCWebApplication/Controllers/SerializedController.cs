@@ -41,28 +41,39 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // POST: /Serialized/
 
         [HttpPost]
-        public string Post()
+        public ActionResult Post()
         {
             Stream s = Request.InputStream;
             StreamReader sr = new StreamReader(s);
-            //Bottle b = new Bottle();
-            //while (!sr.EndOfStream)
-            //{
-            //    string bottle = sr.ReadLine();
-            //    b = Bottle.Deserialize(bottle);
-            //    if (b != null)
-            //    {
-            //        context.Bottles.Add(b);
-            //        context.SaveChanges();
-            //    }
-            //}
-            //return b.ToString();
-            return string.Empty;
+            Bottle b = new Bottle();
+            while (!sr.EndOfStream)
+            {
+                string bottle = sr.ReadLine();
+                //b = Bottle.Deserialize(bottle);
+                if (b != null)
+                {
+                    context.Bottles.Add(b);
+                    context.SaveChanges();
+                }
+            }
+            return Content(b.ToString());
+            //return Content(string.Empty);
         }
 
 
         //
         // POST: /Serialized/PostImage/id
+
+        [HttpGet]
+        public ActionResult GetBottle(int id = 0)
+        {
+            if (id == 0)
+            {
+                return new HttpNotFoundResult();
+            }
+            Bottle b = context.Bottles.Find(id);            
+            return Content(b.ToString());
+        }
 
         [HttpPost]
         public ActionResult PostImage(int id = 0)
@@ -104,5 +115,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             context.Dispose();
             base.Dispose(disposing);
         }
+
+
     }
 }
