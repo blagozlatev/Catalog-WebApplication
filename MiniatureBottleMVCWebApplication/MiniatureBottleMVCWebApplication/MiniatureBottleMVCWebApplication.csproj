@@ -176,7 +176,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BottleModels.cs" />
+    <Compile Include="Models\BottleDetailModel.cs" />
+    <Compile Include="Models\BottleDrinkDetailModel.cs" />
+    <Compile Include="Models\BottleImageModel.cs" />
+    <Compile Include="Models\BottleModel.cs" />
+    <Compile Include="Models\BottleOriginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

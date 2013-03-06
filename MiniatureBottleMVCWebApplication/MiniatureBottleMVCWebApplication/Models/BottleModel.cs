@@ -6,76 +6,13 @@ using System.Linq;
 
 namespace MiniatureBottleMVCWebApplication.Models
 {
-    public class BottleDrinkDetail
+    public class Bottle
     {
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public Bottle()
+        {
+            BottleImage = new BottleImage();
+        }
 
-        [StringLength(100)]
-        public string AlcoholType { get; set; }
-
-        [StringLength(100)]
-        public string Alcohol { get; set; }
-
-        [StringLength(100)]
-        public string Content { get; set; }
-
-        [Range(1, 300)]
-        public int Age { get; set; }
-    }
-
-    public class BottleDetail
-    {
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
-
-        [StringLength(100)]
-        public string Shell { get; set; }
-
-        [Required, StringLength(100)]
-        public string Name { get; set; }
-
-        [StringLength(100)]
-        public string Shape { get; set; }
-
-        [StringLength(100)]
-        public string Color { get; set; }
-
-        [StringLength(100)]
-        public string Material { get; set; }
-
-        [StringLength(255)]
-        public string Note { get; set; }
-    }
-
-    public class BottleOrigin
-    {
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
-
-        [StringLength(100)]
-        public string Manufacturer { get; set; }
-
-        [StringLength(100)]
-        public string City { get; set; }
-
-        [StringLength(100)]
-        public string Country { get; set; }
-
-        [StringLength(50)]
-        public string Continent { get; set; }
-    }
-
-    public class BottleImage
-    {
-        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int BottleImageId { get; set; }        
-        
-        public byte[] BottleImg { get; set; }
-    }
-
-    public class BottleAdd
-    {
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
@@ -97,7 +34,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         public virtual BottleOrigin BottleOrigin { get; set; }
     }
 
-    public class Bottle
+    public class Bottle2
     {
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
@@ -155,7 +92,7 @@ namespace MiniatureBottleMVCWebApplication.Models
             return strReturn;
         }
 
-        public static string Serialize(Bottle b)
+        public static string Serialize(Bottle2 b)
         {
 
             return b.Age + "#" + b.Alcohol + "#" + b.AlcoholType + "#" +
@@ -164,7 +101,7 @@ namespace MiniatureBottleMVCWebApplication.Models
                          + "#" + b.Name + "#" + b.Note + "#" + b.Shape + "#" + b.Shell + "\n";
         }        
 
-        public static Bottle Deserialize(string serialized)
+        public static Bottle2 Deserialize(string serialized)
         {
             string[] split = serialized.Split('#');
             for (int i = 0; i < split.Count(); i++)
@@ -174,7 +111,7 @@ namespace MiniatureBottleMVCWebApplication.Models
                     split[i] = string.Empty;
                 }
             }
-            Bottle bottle = new Bottle();
+            Bottle2 bottle = new Bottle2();
             try
             {
                 bottle.Age = int.Parse(split[0]);
@@ -203,7 +140,7 @@ namespace MiniatureBottleMVCWebApplication.Models
 
     public class MiniatureBottleContext : DbContext
     {
-        public DbSet<BottleAdd> Bottles { get; set; }
+        public DbSet<Bottle> Bottles { get; set; }
         public DbSet<BottleDetail> BottleDetails { get; set; }
         public DbSet<BottleDrinkDetail> BottleDrinkDetails { get; set; }
         public DbSet<BottleOrigin> BottleOrigins { get; set; }

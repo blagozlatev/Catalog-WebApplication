@@ -12,7 +12,7 @@ namespace MiniatureBottleMVCWebApplication.Migrations
 
         protected override void Seed(MiniatureBottleContext context)
         {
-            BottleAdd b1 = new BottleAdd
+            Bottle b1 = new Bottle
                                {
                                    BottleDetail = new BottleDetail()
                                                       {
@@ -47,7 +47,7 @@ namespace MiniatureBottleMVCWebApplication.Migrations
                                    Id = 4
                                };
 
-            BottleAdd b2 = new BottleAdd
+            Bottle b2 = new Bottle
                                {
                                    BottleDetail = new BottleDetail()
                                                       {

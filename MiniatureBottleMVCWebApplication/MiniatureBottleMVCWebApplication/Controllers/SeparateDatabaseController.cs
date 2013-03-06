@@ -27,12 +27,12 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            BottleAdd bottleadd = db.Bottles.Find(id);
-            if (bottleadd == null)
+            Bottle Bottle = db.Bottles.Find(id);
+            if (Bottle == null)
             {
                 return HttpNotFound();
             }
-            return View(bottleadd);
+            return View(Bottle);
         }
 
         //
@@ -47,15 +47,15 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // POST: /SeparateDatabase/Create
 
         [HttpPost]
-        public ActionResult Create(BottleAdd bottleadd)
+        public ActionResult Create(Bottle Bottle)
         {
             if (ModelState.IsValid)
-            {
-                db.Bottles.Add(bottleadd);
+            {                                
+                db.Bottles.Add(Bottle);
                 db.SaveChanges();                                
                 return RedirectToAction("Index");
             }
-            return View(bottleadd);
+            return View(Bottle);
         }
 
         //
@@ -63,35 +63,35 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            BottleAdd bottleadd = db.Bottles.Find(id);
-            if (bottleadd == null)
+            Bottle Bottle = db.Bottles.Find(id);
+            if (Bottle == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", bottleadd.BottleImageId);
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", bottleadd.BottleDetailId);
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", bottleadd.BottleDrinkDetailId);
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", bottleadd.BottleOriginId);
-            return View(bottleadd);
+            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", Bottle.BottleImageId);
+            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", Bottle.BottleDetailId);
+            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", Bottle.BottleDrinkDetailId);
+            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", Bottle.BottleOriginId);
+            return View(Bottle);
         }
 
         //
         // POST: /SeparateDatabase/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(BottleAdd bottleadd)
+        public ActionResult Edit(Bottle Bottle)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bottleadd).State = EntityState.Modified;
+                db.Entry(Bottle).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", bottleadd.BottleImageId);
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", bottleadd.BottleDetailId);
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", bottleadd.BottleDrinkDetailId);
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", bottleadd.BottleOriginId);
-            return View(bottleadd);
+            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", Bottle.BottleImageId);
+            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", Bottle.BottleDetailId);
+            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", Bottle.BottleDrinkDetailId);
+            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", Bottle.BottleOriginId);
+            return View(Bottle);
         }
 
         //
@@ -99,12 +99,12 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            BottleAdd bottleadd = db.Bottles.Find(id);
-            if (bottleadd == null)
+            Bottle Bottle = db.Bottles.Find(id);
+            if (Bottle == null)
             {
                 return HttpNotFound();
             }
-            return View(bottleadd);
+            return View(Bottle);
         }
 
         //
@@ -113,8 +113,8 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            BottleAdd bottleadd = db.Bottles.Find(id);
-            db.Bottles.Remove(bottleadd);
+            Bottle Bottle = db.Bottles.Find(id);
+            db.Bottles.Remove(Bottle);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
