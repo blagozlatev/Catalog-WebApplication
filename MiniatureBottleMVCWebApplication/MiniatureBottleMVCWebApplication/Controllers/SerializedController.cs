@@ -104,10 +104,14 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             if (id == 0)
             {
                 return new HttpNotFoundResult();
-            }
-            byte[] imageBytes;
-            imageBytes = context.BottleImages.Find(id).BottleImg.ToArray();
-            return File(imageBytes, "image/jpeg");
+            }            
+            var img_id = (from b
+                         in context.Bottles
+                         where b.Id == id
+                         select
+                         new { b.BottleImageId }).Single();
+            BottleImage bi= context.BottleImages.Find(img_id.BottleImageId);            
+            return File(bi.BottleImg, "image/" + bi.contentType);            
         }
 
         protected override void Dispose(bool disposing)

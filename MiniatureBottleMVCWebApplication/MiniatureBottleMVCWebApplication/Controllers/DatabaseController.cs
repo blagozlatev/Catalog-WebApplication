@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MiniatureBottleMVCWebApplication.Models;
+using System.IO;
+using System.Drawing;
 
 namespace MiniatureBottleMVCWebApplication.Controllers
 {
@@ -47,12 +49,23 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // POST: /SeparateDatabase/Create
 
         [HttpPost]
-        public ActionResult Create(Bottle Bottle)
+        public ActionResult Create(Bottle Bottle, HttpPostedFileBase BtlImg)
         {
             if (ModelState.IsValid)
-            {                                
+            {
+                if (BtlImg != null && BtlImg.ContentLength > 0)
+                {                    
+                    string[] split = BtlImg.FileName.Split('.');                    
+                    Int32 length = BtlImg.ContentLength;
+                    byte[] tempArray = new byte[length];
+                    BtlImg.InputStream.Read(tempArray, 0, length);
+                    BottleImage bi = new BottleImage();
+                    bi.contentType = split[split.Length - 1];
+                    bi.BottleImg = tempArray;
+                    Bottle.BottleImage = bi;
+                }
                 db.Bottles.Add(Bottle);
-                db.SaveChanges();                                
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(Bottle);

@@ -18,5 +18,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         public int BottleImageId { get; set; }
 
         public byte[] BottleImg { get; set; }
+
+        public string contentType { get; set; }
     }
 }
