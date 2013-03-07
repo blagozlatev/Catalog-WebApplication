@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MiniatureBottleMVCWebApplication.Models;
+using MiniatureBottleMVCWebApplication;
 using System.IO;
 using System.Drawing;
 
@@ -20,8 +21,10 @@ namespace MiniatureBottleMVCWebApplication.Controllers
 
         public ActionResult Index()
         {
-            var bottles = db.Bottles.Include(b => b.BottleImage).Include(b => b.BottleDetail).Include(b => b.BottleDrinkDetail).Include(b => b.BottleOrigin);
-            return View(bottles.ToList());
+            List<Bottle> bottles = (from bottle
+                          in db.Bottles
+                          select bottle).ToList();
+            return View(bottles);
         }
 
         //
@@ -54,15 +57,19 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             if (ModelState.IsValid)
             {
                 if (BtlImg != null && BtlImg.ContentLength > 0)
-                {                    
-                    string[] split = BtlImg.FileName.Split('.');                    
+                {
                     Int32 length = BtlImg.ContentLength;
                     byte[] tempArray = new byte[length];
                     BtlImg.InputStream.Read(tempArray, 0, length);
-                    BottleImage bi = new BottleImage();
-                    bi.contentType = split[split.Length - 1];
-                    bi.BottleImg = tempArray;
-                    Bottle.BottleImage = bi;
+                    Bitmap bmp = ImageFunctions.resizeImage
+                        (new Bitmap(BtlImg.InputStream),
+                        new Size() { Height = 300, Width = 300});
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        tempArray = ms.ToArray();
+                    }
+                    Bottle.BottleImage.BottleImg = tempArray;                
                 }
                 db.Bottles.Add(Bottle);
                 db.SaveChanges();
@@ -75,16 +82,12 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // GET: /SeparateDatabase/Edit/5
 
         public ActionResult Edit(int id = 0)
-        {
+        {            
             Bottle Bottle = db.Bottles.Find(id);
             if (Bottle == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", Bottle.BottleImageId);
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", Bottle.BottleDetailId);
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", Bottle.BottleDrinkDetailId);
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", Bottle.BottleOriginId);
             return View(Bottle);
         }
 
@@ -92,18 +95,29 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         // POST: /SeparateDatabase/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Bottle Bottle)
+        public ActionResult Edit(Bottle Bottle, HttpPostedFileBase BtlImg)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(Bottle).State = EntityState.Modified;
+                if (BtlImg != null && BtlImg.ContentLength > 0)
+                {
+                    Int32 length = BtlImg.ContentLength;
+                    byte[] tempArray = new byte[length];
+                    BtlImg.InputStream.Read(tempArray, 0, length);
+                    Bitmap bmp = ImageFunctions.resizeImage
+                        (new Bitmap(BtlImg.InputStream),
+                        new Size() { Height = 300, Width = 300 });
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        tempArray = ms.ToArray();
+                    }
+                    Bottle.BottleImage.BottleImg = tempArray;
+                }
+                db.Entry(Bottle).State = EntityState.Modified;                
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            ViewBag.BottleImageId = new SelectList(db.BottleImages, "BottleImageId", "BottleImageId", Bottle.BottleImageId);
-            ViewBag.BottleDetailId = new SelectList(db.BottleDetails, "Id", "Shell", Bottle.BottleDetailId);
-            ViewBag.BottleDrinkDetailId = new SelectList(db.BottleDrinkDetails, "Id", "AlcoholType", Bottle.BottleDrinkDetailId);
-            ViewBag.BottleOriginId = new SelectList(db.BottleOrigins, "Id", "Manufacturer", Bottle.BottleOriginId);
+            }            
             return View(Bottle);
         }
 
@@ -128,6 +142,19 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         {
             Bottle Bottle = db.Bottles.Find(id);
             db.Bottles.Remove(Bottle);
+
+            BottleDetail BDRem = db.BottleDetails.Find(Bottle.BottleDetailId);
+            db.BottleDetails.Remove(BDRem);
+
+            BottleDrinkDetail BDDRem = db.BottleDrinkDetails.Find(Bottle.BottleDrinkDetailId);
+            db.BottleDrinkDetails.Remove(BDDRem);
+
+            BottleImage BIRem = db.BottleImages.Find(Bottle.BottleImageId);
+            db.BottleImages.Remove(BIRem);
+
+            BottleOrigin BORem = db.BottleOrigins.Find(Bottle.BottleOriginId);
+            db.BottleOrigins.Remove(BORem);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -105,13 +105,13 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             {
                 return new HttpNotFoundResult();
             }            
-            var img_id = (from b
+            var imageId = (from b
                          in context.Bottles
                          where b.Id == id
                          select
                          new { b.BottleImageId }).Single();
-            BottleImage bi= context.BottleImages.Find(img_id.BottleImageId);            
-            return File(bi.BottleImg, "image/" + bi.contentType);            
+            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);            
+            return File(bi.BottleImg, "image/jpeg");            
         }
 
         protected override void Dispose(bool disposing)

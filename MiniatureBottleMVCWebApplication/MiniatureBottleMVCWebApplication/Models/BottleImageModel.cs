@@ -17,8 +17,6 @@ namespace MiniatureBottleMVCWebApplication.Models
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BottleImageId { get; set; }
 
-        public byte[] BottleImg { get; set; }
-
-        public string contentType { get; set; }
+        public byte[] BottleImg { get; set; }        
     }
 }
