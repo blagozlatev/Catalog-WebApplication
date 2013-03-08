@@ -10,16 +10,7 @@
     @Html.ValidationSummary(true)        
     
     <fieldset>
-        <legend>Bottle</legend>
-        
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id)
-        </div>
-        
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id)
-            @Html.ValidationMessageFor(model => model.Id)
-        </div>
+        <legend>Bottle</legend>       
 
         <div class="editor-label">
             @Html.LabelFor(model => model.BottleDetail.Shell)
@@ -132,7 +123,7 @@
             @Html.EditorFor(model => model.BottleOrigin.Continent)
             @Html.ValidationMessageFor(model => model.BottleOrigin.Continent)
         </div>        
-        <input type="file" name="BtlImg" id="BtlImg"/>
+        @*<input type="file" name="BtlImg" id="BtlImg"/>*@
         <p>
             <input type="submit" value="Edit" />
         </p>

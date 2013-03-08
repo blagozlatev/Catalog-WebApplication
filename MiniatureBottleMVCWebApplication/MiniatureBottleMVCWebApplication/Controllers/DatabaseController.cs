@@ -94,32 +94,35 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // POST: /SeparateDatabase/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(Bottle Bottle, HttpPostedFileBase BtlImg)
-        {
-            if (ModelState.IsValid)
-            {
-                if (BtlImg != null && BtlImg.ContentLength > 0)
-                {
-                    Int32 length = BtlImg.ContentLength;
-                    byte[] tempArray = new byte[length];
-                    BtlImg.InputStream.Read(tempArray, 0, length);
-                    Bitmap bmp = ImageFunctions.resizeImage
-                        (new Bitmap(BtlImg.InputStream),
-                        new Size() { Height = 300, Width = 300 });
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        tempArray = ms.ToArray();
-                    }
-                    Bottle.BottleImage.BottleImg = tempArray;
-                }
-                db.Entry(Bottle).State = EntityState.Modified;                
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }            
-            return View(Bottle);
-        }
+        //Edit is not working at the moment
+        //[HttpPost]
+        //public ActionResult Edit(Bottle Bottle)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        //, HttpPostedFileBase BtlImg
+        //        //if (BtlImg != null && BtlImg.ContentLength > 0)
+        //        //{                    
+        //        //    BottleImage bi = db.BottleImages.Find(Bottle.BottleImageId);                    
+        //        //        Int32 length = BtlImg.ContentLength;
+        //        //        byte[] tempArray = new byte[length];
+        //        //        BtlImg.InputStream.Read(tempArray, 0, length);
+        //        //        Bitmap bmp = ImageFunctions.resizeImage
+        //        //            (new Bitmap(BtlImg.InputStream),
+        //        //            new Size() { Height = 300, Width = 300 });
+        //        //        using (MemoryStream ms = new MemoryStream())
+        //        //        {
+        //        //            bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //        //            tempArray = ms.ToArray();
+        //        //        }
+        //        //        bi.BottleImg = tempArray;
+        //        //}                
+        //        db.Entry(Bottle).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }            
+        //    return View(Bottle);
+        //}
 
         //
         // GET: /SeparateDatabase/Delete/5

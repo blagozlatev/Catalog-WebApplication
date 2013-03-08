@@ -86,14 +86,19 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             StreamReader streamReader = new StreamReader(s);
             string strInputStream = streamReader.ReadToEnd();
             byte[] imageBytes = Convert.FromBase64String(strInputStream);
-            context.BottleImages.Add(
-                new BottleImage
-                {
-                    BottleImageId = id,
-                    BottleImg = imageBytes
-                });
-            context.SaveChanges();
-            return File(imageBytes, "image/jpeg");
+            try
+            {
+                context.BottleImages.Add(
+                    new BottleImage
+                    {
+                        BottleImg = imageBytes
+                    });
+                context.SaveChanges();
+                return Content("true");
+            }
+            catch (Exception ex)
+            { }
+            return Content("False");
         }
 
         //
