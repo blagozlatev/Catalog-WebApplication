@@ -58,7 +58,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             {
                 if (BtlImg != null && BtlImg.ContentLength > 0)
                 {
-                    Int32 length = BtlImg.ContentLength;
+                    int length = BtlImg.ContentLength;
                     byte[] tempArray = new byte[length];
                     BtlImg.InputStream.Read(tempArray, 0, length);
                     Bitmap bmp = ImageFunctions.resizeImage

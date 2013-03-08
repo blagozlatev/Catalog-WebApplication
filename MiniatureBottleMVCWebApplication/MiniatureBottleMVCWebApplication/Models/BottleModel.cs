@@ -10,7 +10,7 @@ namespace MiniatureBottleMVCWebApplication.Models
     {
         public Bottle()
         {
-            BottleImage = new BottleImage();
+            BottleImage = new BottleImage();            
         }
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -63,6 +63,10 @@ namespace MiniatureBottleMVCWebApplication.Models
                 }
             }
             Bottle b = new Bottle();
+            b.BottleDrinkDetail = new BottleDrinkDetail();
+            b.BottleDetail = new BottleDetail();
+            b.BottleImage = new BottleImage();
+            b.BottleOrigin = new BottleOrigin();
             try
             {
                 b.Id = int.Parse(split[0]);
@@ -79,7 +83,7 @@ namespace MiniatureBottleMVCWebApplication.Models
                 b.BottleOrigin.City = split[11];
                 b.BottleOrigin.Country = split[12];
                 b.BottleOrigin.Continent = split[13];
-                b.BottleDetail.Note = split[14];
+                b.BottleDetail.Note = split[14];                
             }
             catch (IndexOutOfRangeException ex)
             {

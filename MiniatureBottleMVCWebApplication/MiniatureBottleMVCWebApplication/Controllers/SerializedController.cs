@@ -1,6 +1,7 @@
 ﻿using MiniatureBottleMVCWebApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -59,11 +60,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             }            
             return Content("1");
         }
-
-
-        //
-        // POST: /Serialized/PostImage/id
-
+        
         [HttpGet]
         public ActionResult GetBottle(int id = 0)
         {
@@ -75,6 +72,8 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             return Content(b.ToString());
         }
 
+        //
+        // POST: /Serialized/PostImage/id
         [HttpPost]
         public ActionResult PostImage(int id = 0)
         {
@@ -88,17 +87,21 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             byte[] imageBytes = Convert.FromBase64String(strInputStream);
             try
             {
-                context.BottleImages.Add(
-                    new BottleImage
-                    {
-                        BottleImg = imageBytes
-                    });
+                MemoryStream ms = new MemoryStream(imageBytes);
+                Bitmap bit = ImageFunctions.resizeImage
+                    (new Bitmap(ms), new Size() { Width = 300, Height = 300 });
+                MemoryStream ms_arr = new MemoryStream();
+                bit.Save(ms_arr, ImageFormat.Jpeg);
+
+                Bottle b = context.Bottles.Find(id);
+                b.BottleImage.BottleImg = ms_arr.ToArray();
+                context.Entry(b).State = EntityState.Modified;
                 context.SaveChanges();
-                return Content("true");
+                return Content("1");
             }
             catch (Exception ex)
             { }
-            return Content("False");
+            return Content("0");
         }
 
         //
