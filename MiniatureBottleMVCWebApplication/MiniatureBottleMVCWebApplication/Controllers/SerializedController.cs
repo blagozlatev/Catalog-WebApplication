@@ -22,20 +22,19 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         {
             if (id == 0)
             {
-                //List<Bottle> bottles = context.Bottles.ToList();
+                List<Bottle> bottles = context.Bottles.ToList();
                 string strReturn = string.Empty;
-                //foreach (Bottle b in bottles)
+                foreach (Bottle b in bottles)
                 {
-                    //strReturn += Bottle.Serialize(b);
+                    strReturn += Bottle.Serialize(b);
                 }
                 return strReturn;
             }
             else
             {
-                //Bottle b = context.Bottles.Find(id);
-                //return Bottle.Serialize(b);
-            }
-            return string.Empty;
+                Bottle b = context.Bottles.Find(id);
+                return Bottle.Serialize(b);
+            }            
         }
 
         //
@@ -87,16 +86,18 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             byte[] imageBytes = Convert.FromBase64String(strInputStream);
             try
             {
-                MemoryStream ms = new MemoryStream(imageBytes);
-                Bitmap bit = ImageFunctions.resizeImage
-                    (new Bitmap(ms), new Size() { Width = 300, Height = 300 });
-                MemoryStream ms_arr = new MemoryStream();
-                bit.Save(ms_arr, ImageFormat.Jpeg);
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    Bitmap bit = ImageFunctions.resizeImage
+                        (new Bitmap(ms), new Size() { Width = 300, Height = 300 });
+                    MemoryStream ms_arr = new MemoryStream();
+                    bit.Save(ms_arr, ImageFormat.Jpeg);
 
-                Bottle b = context.Bottles.Find(id);
-                b.BottleImage.BottleImg = ms_arr.ToArray();
-                context.Entry(b).State = EntityState.Modified;
-                context.SaveChanges();
+                    Bottle b = context.Bottles.Find(id);
+                    b.BottleImage.BottleImg = ms_arr.ToArray();
+                    context.Entry(b).State = EntityState.Modified;
+                    context.SaveChanges();                    
+                }
                 return Content("1");
             }
             catch (Exception ex)
