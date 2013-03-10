@@ -123,6 +123,23 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             return File(bi.BottleImg, "image/jpeg");            
         }
 
+        [HttpGet]
+        public ActionResult GetImageBase(int id = 0)
+        {
+            if (id == 0)
+            {
+                return new HttpNotFoundResult();
+            }
+            var imageId = (from b
+                         in context.Bottles
+                           where b.Id == id
+                           select
+                           new { b.BottleImageId }).Single();
+            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);            
+            return Content(Convert.ToBase64String
+                (bi.BottleImg, Base64FormattingOptions.None));
+        }
+
         protected override void Dispose(bool disposing)
         {
             context.Dispose();
