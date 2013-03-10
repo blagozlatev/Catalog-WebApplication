@@ -68,7 +68,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 return new HttpNotFoundResult();
             }
             Bottle b = context.Bottles.Find(id);            
-            return Content(b.ToString());
+            return Content(Bottle.Serialize(b));
         }
 
         //
@@ -123,6 +123,8 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             return File(bi.BottleImg, "image/jpeg");            
         }
 
+        //
+        // GET: /Serialized/GetImageBase/id
         [HttpGet]
         public ActionResult GetImageBase(int id = 0)
         {
