@@ -56,9 +56,9 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                     context.Bottles.Add(b);
                     context.SaveChanges();
                 }
-                return Content("0");
+                return Content("1");
             }            
-            return Content("1");
+            return Content("0");
         }
         
         [HttpGet]
