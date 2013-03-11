@@ -66,8 +66,12 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             if (id == 0)
             {
                 return new HttpNotFoundResult();
+            }            
+            Bottle b = context.Bottles.Find(id);
+            if (b == null)
+            {
+                return Content("0");
             }
-            Bottle b = context.Bottles.Find(id);            
             return Content(Bottle.Serialize(b));
         }
 
