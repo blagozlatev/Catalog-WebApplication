@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -10,7 +11,7 @@ namespace MiniatureBottleMVCWebApplication.Models
     {
         public Bottle()
         {
-            BottleImage = new BottleImage();            
+            BottleImage = new BottleImage();
         }
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -83,17 +84,77 @@ namespace MiniatureBottleMVCWebApplication.Models
                 b.BottleOrigin.City = split[11];
                 b.BottleOrigin.Country = split[12];
                 b.BottleOrigin.Continent = split[13];
-                b.BottleDetail.Note = split[14];                
+                b.BottleDetail.Note = split[14];
             }
             catch (IndexOutOfRangeException ex)
             {
                 return null;
             }
-            return b;            
+            return b;
         }
 
         public static string Serialize(Bottle b)
         {            
+            if (b.Id.ToString() == null)
+            {
+                b.Id = 0;                
+            }
+            if (b.BottleDrinkDetail.AlcoholType == null)
+            {
+                b.BottleDrinkDetail.AlcoholType = " ";                
+            }
+            if (b.BottleDrinkDetail.Alcohol == null)
+            {
+                b.BottleDrinkDetail.Alcohol = " ";
+            }
+            if (b.BottleDrinkDetail.Content == null)
+            {
+                b.BottleDrinkDetail.Content = " ";
+            }
+            if (b.BottleDrinkDetail.Age.ToString() == null)
+            {
+                b.BottleDrinkDetail.Age = 0;
+            }
+            if (b.BottleDetail.Shell == null)
+            {
+                b.BottleDetail.Shell = " ";
+            }
+            if (b.BottleDetail.Name == null)
+            {
+                b.BottleDetail.Name = " ";
+            }
+            if (b.BottleDetail.Shape == null)
+            {
+                b.BottleDetail.Shape = " ";
+            }
+            if (b.BottleDetail.Color == null)
+            {
+                b.BottleDetail.Color = " ";
+            }
+            if (b.BottleDetail.Material == null)
+            {
+                b.BottleDetail.Material = " ";
+            }
+            if (b.BottleOrigin.Manufacturer == null)
+            {
+                b.BottleOrigin.Manufacturer = " ";
+            }
+            if (b.BottleOrigin.City == null)
+            {
+                b.BottleOrigin.City = " ";
+            }
+            if (b.BottleOrigin.Country == null)
+            {
+                b.BottleOrigin.Country = " ";
+            }
+            if (b.BottleOrigin.Continent == null)
+            {
+                b.BottleOrigin.Continent = " ";
+            }
+            if (b.BottleDetail.Note == null)
+            {
+                b.BottleDetail.Note = " ";
+            }
             return b.Id.ToString().Replace('#', ' ') + "#"
                 + b.BottleDrinkDetail.AlcoholType.Replace('#', ' ') + "#"
                 + b.BottleDrinkDetail.Alcohol.Replace('#', ' ') + "#"
@@ -118,6 +179,6 @@ namespace MiniatureBottleMVCWebApplication.Models
         public DbSet<BottleDetail> BottleDetails { get; set; }
         public DbSet<BottleDrinkDetail> BottleDrinkDetails { get; set; }
         public DbSet<BottleOrigin> BottleOrigins { get; set; }
-        public DbSet<BottleImage> BottleImages { get; set; }        
+        public DbSet<BottleImage> BottleImages { get; set; }
     }
 }

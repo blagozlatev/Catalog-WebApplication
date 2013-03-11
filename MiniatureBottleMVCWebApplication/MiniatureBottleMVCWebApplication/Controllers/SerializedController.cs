@@ -34,7 +34,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             {
                 Bottle b = context.Bottles.Find(id);
                 return Bottle.Serialize(b);
-            }            
+            }
         }
 
         //
@@ -56,17 +56,17 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                     context.SaveChanges();
                 }
                 return Content("1");
-            }            
+            }
             return Content("0");
         }
-        
+
         [HttpGet]
         public ActionResult GetBottle(int id = 0)
         {
             if (id == 0)
             {
                 return new HttpNotFoundResult();
-            }            
+            }
             Bottle b = context.Bottles.Find(id);
             if (b == null)
             {
@@ -100,7 +100,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                     Bottle b = context.Bottles.Find(id);
                     b.BottleImage.BottleImg = ms_arr.ToArray();
                     context.Entry(b).State = EntityState.Modified;
-                    context.SaveChanges();                    
+                    context.SaveChanges();
                 }
                 return Content("1");
             }
@@ -117,14 +117,14 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             if (id == 0)
             {
                 return new HttpNotFoundResult();
-            }            
+            }
             var imageId = (from b
                          in context.Bottles
-                         where b.Id == id
-                         select
-                         new { b.BottleImageId }).Single();
-            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);            
-            return File(bi.BottleImg, "image/jpeg");            
+                           where b.Id == id
+                           select
+                           new { b.BottleImageId }).Single();
+            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);
+            return File(bi.BottleImg, "image/jpeg");
         }
 
         //
@@ -141,7 +141,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                            where b.Id == id
                            select
                            new { b.BottleImageId }).Single();
-            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);            
+            BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);
             return Content(Convert.ToBase64String
                 (bi.BottleImg, Base64FormattingOptions.None));
         }

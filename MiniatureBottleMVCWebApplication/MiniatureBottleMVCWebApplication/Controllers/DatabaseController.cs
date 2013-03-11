@@ -147,16 +147,29 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             db.Bottles.Remove(Bottle);
 
             BottleDetail BDRem = db.BottleDetails.Find(Bottle.BottleDetailId);
-            db.BottleDetails.Remove(BDRem);
+            if (BDRem != null)
+            {
+                db.BottleDetails.Remove(BDRem);
+            }
 
             BottleDrinkDetail BDDRem = db.BottleDrinkDetails.Find(Bottle.BottleDrinkDetailId);
-            db.BottleDrinkDetails.Remove(BDDRem);
+
+            if (BDDRem != null)
+            {
+                db.BottleDrinkDetails.Remove(BDDRem);
+            }
 
             BottleImage BIRem = db.BottleImages.Find(Bottle.BottleImageId);
-            db.BottleImages.Remove(BIRem);
-
+            if (BIRem != null)
+            {
+                db.BottleImages.Remove(BIRem);
+            }
+            
             BottleOrigin BORem = db.BottleOrigins.Find(Bottle.BottleOriginId);
-            db.BottleOrigins.Remove(BORem);
+            if (BORem != null)
+            {
+                db.BottleOrigins.Remove(BORem);
+            }
 
             db.SaveChanges();
             return RedirectToAction("Index");
