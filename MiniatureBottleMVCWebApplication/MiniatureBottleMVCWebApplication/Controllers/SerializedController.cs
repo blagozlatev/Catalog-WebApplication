@@ -93,7 +93,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 using (MemoryStream ms = new MemoryStream(imageBytes))
                 {
                     Bitmap bit = ImageFunctions.resizeImage
-                        (new Bitmap(ms), new Size() { Width = 300, Height = 300 });
+                        (new Bitmap(ms), new Size() { Width = 800, Height = 800 });
                     MemoryStream ms_arr = new MemoryStream();
                     bit.Save(ms_arr, ImageFormat.Jpeg);
 

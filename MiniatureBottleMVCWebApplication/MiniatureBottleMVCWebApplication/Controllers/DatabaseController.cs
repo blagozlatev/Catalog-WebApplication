@@ -63,7 +63,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                     BtlImg.InputStream.Read(tempArray, 0, length);
                     Bitmap bmp = ImageFunctions.resizeImage
                         (new Bitmap(BtlImg.InputStream),
-                        new Size() { Height = 300, Width = 300});
+                        new Size() { Height = 800, Width = 800});
                     using (MemoryStream ms = new MemoryStream())
                     {
                         bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);

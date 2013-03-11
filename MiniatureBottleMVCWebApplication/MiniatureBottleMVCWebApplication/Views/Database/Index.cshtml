@@ -82,7 +82,8 @@
             @Html.DisplayFor(modelItem => item.BottleDetail.Note)
         </td>
         <td>
-            <img src="@Url.Action("GetImage", "Serialized", new { id = item.Id })" />    
+            <img src="@Url.Action("GetImage", "Serialized", new { id = item.Id })" 
+                width="200", height=auto/>    
         </td>
         <td> 
             @Html.ActionLink("Delete", "Delete", new {id = item.Id })
