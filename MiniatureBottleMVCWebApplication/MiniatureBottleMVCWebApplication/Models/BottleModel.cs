@@ -108,7 +108,7 @@ namespace MiniatureBottleMVCWebApplication.Models
                 + b.BottleOrigin.City.Replace('#', ' ') + "#"
                 + b.BottleOrigin.Country.Replace('#', ' ') + "#"
                 + b.BottleOrigin.Continent.Replace('#', ' ') + "#"
-                + b.BottleDetail.Note.Replace('#', ' ') + "#";
+                + b.BottleDetail.Note.Replace('#', ' ') + "#" + "\n";
         }
     }
 
