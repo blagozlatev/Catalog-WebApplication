@@ -11,7 +11,7 @@ namespace MiniatureBottleMVCWebApplication.Models
     {
         public Bottle()
         {
-            BottleImage = new BottleImage();
+            BottleImage = new BottleImage();            
         }
 
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -94,14 +94,14 @@ namespace MiniatureBottleMVCWebApplication.Models
         }
 
         public static string Serialize(Bottle b)
-        {            
+        {
             if (b.Id.ToString() == null)
             {
-                b.Id = 0;                
+                b.Id = 0;
             }
             if (b.BottleDrinkDetail.AlcoholType == null)
             {
-                b.BottleDrinkDetail.AlcoholType = " ";                
+                b.BottleDrinkDetail.AlcoholType = " ";
             }
             if (b.BottleDrinkDetail.Alcohol == null)
             {

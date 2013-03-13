@@ -17,10 +17,10 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         private MiniatureBottleContext db = new MiniatureBottleContext();
 
         //
-        // GET: /SeparateDatabase/
+        // GET: /Database/
 
         public ActionResult Index()
-        {
+        {            
             List<Bottle> bottles = (from bottle
                           in db.Bottles
                           select bottle).ToList();
@@ -28,7 +28,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // GET: /SeparateDatabase/Details/5
+        // GET: /Database/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -41,7 +41,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // GET: /SeparateDatabase/Create
+        // GET: /Database/Create
 
         public ActionResult Create()
         {            
@@ -49,7 +49,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // POST: /SeparateDatabase/Create
+        // POST: /Database/Create
 
         [HttpPost]
         public ActionResult Create(Bottle Bottle, HttpPostedFileBase BtlImg)
@@ -79,7 +79,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // GET: /SeparateDatabase/Edit/5
+        // GET: /Database/Edit/5
 
         public ActionResult Edit(int id = 0)
         {            
@@ -92,7 +92,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // POST: /SeparateDatabase/Edit/5
+        // POST: /Database/Edit/5
 
         //Edit is not working at the moment
         //[HttpPost]
@@ -125,7 +125,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //}
 
         //
-        // GET: /SeparateDatabase/Delete/5
+        // GET: /Database/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
@@ -138,7 +138,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         }
 
         //
-        // POST: /SeparateDatabase/Delete/5
+        // POST: /Database/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
