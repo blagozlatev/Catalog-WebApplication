@@ -17,7 +17,7 @@ namespace MiniatureBottleMVCWebApplication.Models
         [StringLength(100)]
         public string Content { get; set; }
 
-        [Range(1, 300)]
+        [Required, Range(1, 300)]
         public int Age { get; set; }
     }
 }
