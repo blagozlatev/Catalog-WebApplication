@@ -175,7 +175,6 @@
     </Compile>
     <Compile Include="ImageFunction.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BottleDetailModel.cs" />
     <Compile Include="Models\BottleDrinkDetailModel.cs" />
     <Compile Include="Models\BottleImageModel.cs" />
