@@ -142,8 +142,15 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                            select
                            new { b.BottleImageId }).Single();
             BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);
-            return Content(Convert.ToBase64String
+            if (bi != null)
+            {
+                return Content(Convert.ToBase64String
                 (bi.BottleImg, Base64FormattingOptions.None));
+            }
+            else 
+            {
+                return Content("0");                
+            }
         }
 
         protected override void Dispose(bool disposing)
