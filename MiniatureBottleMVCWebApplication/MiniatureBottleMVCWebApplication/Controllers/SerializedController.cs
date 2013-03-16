@@ -18,7 +18,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // GET: /Serialized/        
 
-        public string Index(int id = 0)
+        public ActionResult Index(int id = 0)
         {
             if (id == 0)
             {
@@ -28,12 +28,16 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 {
                     strReturn += Bottle.Serialize(b);
                 }
-                return strReturn;
+                return Content(strReturn);
             }
             else
             {
                 Bottle b = context.Bottles.Find(id);
-                return Bottle.Serialize(b);
+                if (b == null)
+                {
+                    return Content("0");
+                }
+                return Content(Bottle.Serialize(b));
             }
         }
 
@@ -59,22 +63,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
             }
             return Content("0");
         }
-
-        [HttpGet]
-        public ActionResult GetBottle(int id = 0)
-        {
-            if (id == 0)
-            {
-                return new HttpNotFoundResult();
-            }
-            Bottle b = context.Bottles.Find(id);
-            if (b == null)
-            {
-                return Content("0");
-            }
-            return Content(Bottle.Serialize(b));
-        }
-
+       
         //
         // POST: /Serialized/PostImage/id
         [HttpPost]
