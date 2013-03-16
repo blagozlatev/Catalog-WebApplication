@@ -132,32 +132,29 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         [HttpGet]
         public ActionResult GetImageBase(int id = 0)
         {
-            if (id == 0)
+            if (id != 0)
             {
-                return Content("0");
-            }
-            try
-            {
-                var imageId = (from b
-                             in context.Bottles
-                               where b.Id == id
-                               select
-                               new { b.BottleImageId }).Single();
-                BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);
-                if (bi != null)
+                try
                 {
+                    var imageId = (from b
+                                 in context.Bottles
+                                   where b.Id == id
+                                   select
+                                   new { b.BottleImageId }).Single();
+                    BottleImage bi = context.BottleImages.Find(imageId.BottleImageId);
                     return Content(Convert.ToBase64String
                     (bi.BottleImg, Base64FormattingOptions.None));
                 }
-                else
+                catch (NullReferenceException ex)
+                {
+                    return Content("0");
+                }
+                catch (InvalidOperationException ex)
                 {
                     return Content("0");
                 }
             }
-            catch (InvalidOperationException ex)
-            {
-                return Content("0");
-            }            
+            return Content("0");
         }
 
         protected override void Dispose(bool disposing)
