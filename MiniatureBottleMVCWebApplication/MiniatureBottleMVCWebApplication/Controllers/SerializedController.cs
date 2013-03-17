@@ -94,7 +94,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
                 return Content("1");
             }
             catch (Exception ex)
-            { }
+            { } 
             return Content("0");
         }
 
