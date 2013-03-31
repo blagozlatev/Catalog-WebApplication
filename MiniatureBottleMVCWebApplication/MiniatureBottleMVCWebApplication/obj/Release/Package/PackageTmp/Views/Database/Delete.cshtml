@@ -1,0 +1,127 @@
+﻿@model MiniatureBottleMVCWebApplication.Models.Bottle
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Bottle</legend>
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.Id)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Shell)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Shell)
+        </div>
+        
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Name)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Name)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Shape)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Shape)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Color)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Color)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Material)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Material)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDetail.Note)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDetail.Note)
+        </div>                        
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDrinkDetail.Age)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDrinkDetail.Age)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDrinkDetail.Alcohol)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDrinkDetail.Alcohol)
+        </div>
+        
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDrinkDetail.AlcoholType)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDrinkDetail.AlcoholType)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleDrinkDetail.Content)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleDrinkDetail.Content)
+        </div>        
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleOrigin.Manufacturer)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleOrigin.Manufacturer)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleOrigin.City)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleOrigin.City)
+        </div>
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleOrigin.Country)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleOrigin.Country)
+        </div>   
+
+        <div class="display-label">            
+            <b>@Html.DisplayNameFor(model => model.BottleOrigin.Continent)</b>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.BottleOrigin.Continent)
+        </div>
+    
+        <div class="display-label">            
+            <b>Image</b>
+        </div>
+        <img width="400" height="auto" src="@Url.Action("GetImage", "Serialized", new { id = Model.Id })" />    
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
