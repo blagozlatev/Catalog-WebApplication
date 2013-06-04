@@ -43,6 +43,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // GET: /Database/Create
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {            
             return View();
@@ -51,7 +52,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // POST: /Database/Create
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Admin")]
         public ActionResult Create(Bottle Bottle, HttpPostedFileBase BtlImg)
         {
             if (ModelState.IsValid)
@@ -81,6 +82,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // GET: /Database/Edit/5
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id = 0)
         {            
             Bottle Bottle = db.Bottles.Find(id);
@@ -94,6 +96,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // GET: /Database/Delete/5
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id = 0)
         {
             Bottle Bottle = db.Bottles.Find(id);
@@ -107,7 +110,7 @@ namespace MiniatureBottleMVCWebApplication.Controllers
         //
         // POST: /Database/Delete/5
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Bottle Bottle = db.Bottles.Find(id);
